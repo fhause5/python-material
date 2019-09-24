@@ -2,17 +2,21 @@
 
 virtualenv venv && source venv/bin/activate
 # Look up what installed
+```
 pip freeze
 pip install flask
 pip freeze > requirements.txt
 pip instlal -r requirements.txt
-
+```
 ### *args, **kwards
 * *Все входящие аргументы в кортеж
 * sum Сумма всех чисел из кортежа args
+
+```
 def add(*args):
     print(sum(args))
 add(10,20,230)
+```
 
 * Засосвуем список 
 l = [1,2,3]
@@ -51,13 +55,14 @@ print(cars)
 ```
 
 ### Filer (Фильтрация) по Первому элементу 
-
-names = ['igor', 'Sergei', 'Marina']
+```
+names = ['igor', 'Serhei', 'Marina']
 new_name = [n for n in names if n.startswith('M')]
 print(new_name)
 
+```
 ### Генераторы быстрее (Замеряем время)
-
+```
 
 from datetime import datetime
 
@@ -81,10 +86,10 @@ def two():
 l1 = one()
 l2 = two()
 
-
+```
 ### ДЕКОРАТОРЫ, чтобы куча раз не описывать переменные для функции, мы её ошишим один раз
 
-
+```
 from datetime import datetime
 
 def whattime(func):
@@ -107,9 +112,11 @@ l2 = two()
 
 l1 = one     # Это значит что мы передаем функцию как обьект, а если нужен вызов то one()
 
-
+```
 ### yield
 (Построчно)
+
+```
 def summ_append(n):
     result = []
     while n != 0:
@@ -128,9 +135,12 @@ print(next(summ))
 3
 print(next(summ))
 2
+```
 
 ### map
 (Элемент функционального програмирования)
+
+```
 def upper(string):
     return string.upper()
 
@@ -141,7 +151,9 @@ big_list = list(map(upper, list_lower))
 print(big_list)
 ['ONE', 'TWO', 'THREE']
 
+```
 ### Filter
+```
 def has_d(string):
     return 'd' in string.lower()
 
@@ -160,3 +172,5 @@ l2 = list(filter(lambda string: 'd' in string.lower(), l1))
 
 
 print(l2)
+
+```
