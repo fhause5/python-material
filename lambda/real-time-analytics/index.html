@@ -1,0 +1,112 @@
+<html>
+<head>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.4.7.min.js"></script>
+
+    <script type="text/javascript">
+
+    // Initialize the Amazon Cognito credentials provider
+    AWS.config.region = 'eu-central-1'; // Region
+    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: 'eu-central-1:ea3a16fd-ea5c-473a-bcbd-704caa795762',
+    });
+
+      function sendToKinesis(value) {
+
+        var author = document.getElementById('author').value;
+        var date = new Date();
+
+        requestData = "{\"author\": \"" + author + "\", \"value\":\"" + value + "\"}\n";
+
+        console.log(requestData);
+
+        var params = {
+          DeliveryStreamName: 'kinesis-firehose',
+          Record: {
+            Data: requestData
+          }
+        };
+        var firehose = new AWS.Firehose();
+
+        firehose.putRecord(params, function(err, data) {
+          if (err) console.log(err, err.stack); // an error occurred
+          else     console.log(data);           // successful response
+        });
+
+      }
+
+    </script>
+
+</head>
+<body>
+
+  <table>
+    <tr>
+      <form>
+        Your name:<input type="text" name="name" id="author"><br>
+      </form>
+    </tr>
+    <tr>
+      <td><div id="red" style="background-color:Crimson; width: 200px; height: 200px"></div></td>
+      <td><div id="green" style="background-color:green; width: 200px; height: 200px"></div></td>
+      <td><div id="blue" style="background-color:blue; width: 200px; height: 200px"></div></td>
+      <td><div id="black" style="background-color:black; width: 200px; height: 200px"></div></td>
+      <td><div id="orange" style="background-color:orange; width: 200px; height: 200px"></div></td>
+    </tr>
+    <tr>
+      <td><div id="gold" style="background-color:GoldenRod ; width: 200px; height: 200px"></div></td>
+      <td><div id="grey" style="background-color:LightSlateGrey; width: 200px; height: 200px"></div></td>
+      <td><div id="white" style="background-color:white; width: 200px; height: 200px"></div></td>
+      <td><div id="pink" style="background-color:Violet; width: 200px; height: 200px"></div></td>
+      <td><div id="brown" style="background-color:SaddleBrown; width: 200px; height: 200px"></div></td>
+    </tr>
+  </table>
+
+  <script>
+
+  var redBox = document.getElementById('red');
+  var greenBox = document.getElementById('green');
+  var blueBox = document.getElementById('blue');
+  var blackBox = document.getElementById('black');
+  var orangeBox = document.getElementById('orange');
+
+  var goldBox = document.getElementById('gold');
+  var greyBox = document.getElementById('grey');
+  var whiteBox = document.getElementById('white');
+  var pinkBox = document.getElementById('pink');
+  var brownBox = document.getElementById('brown');
+
+  goldBox.style.cursor = 'pointer';
+  goldBox.onclick = function() { sendToKinesis('gold') };
+
+  greyBox.style.cursor = 'pointer';
+  greyBox.onclick = function() { sendToKinesis('grey') };
+
+  whiteBox.style.cursor = 'pointer';
+  whiteBox.onclick = function() { sendToKinesis('white') };
+
+  pinkBox.style.cursor = 'pointer';
+  pinkBox.onclick = function() { sendToKinesis('pink') };
+
+  brownBox.style.cursor = 'pointer';
+  brownBox.onclick = function() { sendToKinesis('brown') };
+
+
+  redBox.style.cursor = 'pointer';
+  redBox.onclick = function() { sendToKinesis('red') };
+
+  greenBox.style.cursor = 'pointer';
+  greenBox.onclick = function() { sendToKinesis('green') };
+
+  blueBox.style.cursor = 'pointer';
+  blueBox.onclick = function() { sendToKinesis('blue') };
+
+  blackBox.style.cursor = 'pointer';
+  blackBox.onclick = function() { sendToKinesis('black') };
+
+  orangeBox.style.cursor = 'pointer';
+  orangeBox.onclick = function() { sendToKinesis('orange') };
+
+  </script>
+
+</body>
+</html>
