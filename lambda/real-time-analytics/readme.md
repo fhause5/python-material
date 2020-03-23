@@ -54,5 +54,12 @@ You can use:
 SELECT author, count(*) FROM "sampledb"."kinesis_data" group by author;
 
 ```
+### Do not forget to delete all services
+```
+# ATHENA
+DROP DATABASE sampledb
+DROP DATABASE default
+```
+> S3 delete empty buckets!!!
 <span style="color: red">&#x1F535; For details feel free to contact  </span>
 ### fhause5@gmail.com
