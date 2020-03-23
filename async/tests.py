@@ -1,19 +1,24 @@
-from select import select
-
-monitor = []
-def accept(text):
-    print("Except:" + text)
-
-def send(text):
-    print("Sending to telegam:" + text)
+from pythonping import ping
+import asyncio
+import time
 
 
-devops = input("Devops: ")
-develop = input("Developer: ")
+async def google():
+    print('ping google')
+    #yield  from asyncio.sleep(1)
+    ping('8.8.8.8', verbose=True)
+    task = asyncio.create_task(google())
 
-def event():
-    while True:
-        ready_to_exept, _, _ = select(monitor, [], [])
+async def local():
+    print("ping local")
+    ping('localhost', verbose=True)
+    task = asyncio.create_task(local())
+
+# событийный цикл
+event = asyncio.get_event_loop()
+tasks = [event.create_task(google()), event.create_task(local())]
+event.run_until_complete(asyncio.wait(tasks))
+event.close
 
 if __name__ == '__main__':
-    monitor.append(devops)
+    main()

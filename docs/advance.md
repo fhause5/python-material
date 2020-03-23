@@ -8,8 +8,10 @@ pip install flask
 pip freeze > requirements.txt
 pip instlal -r requirements.txt
 ```
-### *args, **kwards
-* *Все входящие аргументы в кортеж
+### *args, **kwargs
+* args -аргументы функции
+* kwargs - ключевые аргуменнты функции
+* Все входящие аргументы в кортеж
 * sum Сумма всех чисел из кортежа args
 
 ```
